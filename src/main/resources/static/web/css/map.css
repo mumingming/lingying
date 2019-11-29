@@ -1,0 +1,175 @@
+ body{
+    margin:0;
+    padding: 0;
+}
+#app{
+    width: 1345px;
+    height: 100%;
+}
+.hear_box{
+    background-color: #00b38a;
+    width: 100%;
+    height: 45px;
+
+}
+.fun{
+    width: 100%;
+    height: 60px;
+    margin-top: -10px;
+    float: left;
+}
+#container {
+
+    width: 100%;
+    height: 520px;
+}
+.amap-logo img{
+    display: none;
+}
+.amap-copyright,.amap-mcode{
+    box-sizing: content-box;
+    display: none;
+}
+.amap-copyright{
+    position: absolute;
+    display: none!important;
+    left: 77px;
+    height: 16px;
+    bottom: 0;
+    padding-bottom: 3px;
+    font-size: 11px;
+    font-family: Arial,sans-serif;
+    z-index: 160;
+}
+input{
+    outline: none;
+    font-size:16px;
+    left:10px;
+}
+#seek{
+    width: 22%;
+    height: 45px;
+    float: left;
+    margin-top: 15px;
+    margin-left: 2px;
+
+}
+li{
+    list-style: none;
+    float: left;
+    margin-left: 30px
+}
+a{
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    height: 45px;
+    line-height: 45px;
+
+}
+.left_box{
+    float: left;
+    margin-left: 20%;
+}
+.rig_box{
+    float: right;
+    margin-right: 5%;
+}
+.rb{
+    float: right;
+    margin-right: 10%;
+    height: 45px;
+    line-height: 45px;
+    margin-top: 15px;
+    width: 200px;
+}
+ .ax1{
+     height: 45px;
+     width: 100px;
+     background-color: #00b38a;
+     font-size: 13px;
+     border: 1px solid #b4bccc;
+     line-height: 45px;
+     text-align: center;
+ }
+.ax2{
+    height: 45px;
+    width: 100px;
+    background-color: #00b38a;
+    font-size: 13px;
+    border: 1px solid #b4bccc;
+    line-height: 45px;
+    text-align: center;
+    margin-top: -45px;
+    margin-left: 100px;
+}
+
+.four_box{
+    width: 200px;
+    height: 45px;
+    border: 1px solid silver;
+    margin-top: 15px;
+    float: left;
+
+}
+#noe{
+    width: 200px;
+    height: 220px;
+    border: 1px solid red;
+    margin-top: 43px;
+    margin-left: -2px;
+    position: relative;
+    background-color: white;
+    z-index:1;
+}
+#noe_a {
+    float: left;
+    width: 40%;
+    margin-left: -50px;
+    margin-top: 10px;
+    font-size: 16px;
+}
+#noe_a>input{
+    margin-left: 20px;
+    margin-top: 10px;
+}
+#noe_b{
+    float: right;
+    width: 40%;
+    margin-right: -2px;
+    margin-top: 10px;
+    font-size: 16px;
+}
+#noe_b>input{
+    margin-right: 9px;
+    margin-top: 10px;
+}
+input.it{
+    width: 30%;
+    float: left;
+    margin-left: 20px;
+    margin-top: 7px;
+}
+input.ic{
+    width: 30%;
+    float: left;
+    margin-left: 42px;
+    margin-top: -18px;
+}
+#noe1{
+
+    width: 130px;
+    height: 200px;
+    margin-top: 40px;
+
+}
+input.sub{
+    margin-top: 20px;
+    background-color: white;
+}
+.noe_a1{
+    width: 50px;
+    height: 180px;
+    float: left;
+    margin-left: 40px;
+}

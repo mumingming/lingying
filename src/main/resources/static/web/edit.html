@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>编辑</title>
+  <link rel="stylesheet" href="../layui/css/layui.css"  media="all">
+  <script src="../layui/layui.js" charset="utf-8"></script>
+ </head>
+<body>
+	<br>
+<h1 style="text-align: center;">编辑</h1><br>
+
+<form  id="form-edit" action="">
+<div class="layui-form-item">
+    <label class="layui-form-label">ID：</label>
+    <div class="layui-input-inline" style="width: 300px">
+      <input id="id" type="text" name="id" lay-verify="required" placeholder="请输入修改用户ID" autocomplete="off" class="layui-input" readonly="readonly" style="cursor:pointer;border:0px;text-shadow:0 0 0black;">
+     
+    </div>
+  </div>
+  
+  <div class="layui-form-item">
+    <label class="layui-form-label">公司名称：</label>
+    <div class="layui-input-inline" style="width: 300px">
+      <input id="company" type="text" name="company" lay-verify="required" placeholder="请输入公司名称" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  
+   <div class="layui-inline" >
+      <label class="layui-form-label">时间:</label>
+      <div class="layui-input-inline">
+        <input style="width: 300px" type="text" name="starttime" id="starttime" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <br>
+     <br>
+    <div class="layui-form" class="layui-inline">
+      <label class="layui-form-label">类型：</label>
+      <div class="layui-input-inline" style="width: 300px">
+        <select id="types" name="types" lay-verify="required" lay-search="" style="width: 300px">
+          <option value="">直接选择或搜索选择</option>
+          <option value="收入">收入</option>
+          <option value="支出">支出</option>        
+        </select>
+      </div>
+    </div>
+    <br>
+     <div class="layui-form-item">
+    <label class="layui-form-label">金额：</label>
+    <div class="layui-input-inline" style="width: 300px">
+      <input id="money" type="text" name="money" lay-verify="required" placeholder="请输入金额(元)" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  
+   <div class="layui-form"  class="layui-inline">
+      <label class="layui-form-label">收款方式：</label>
+      <div class="layui-input-inline" style="width: 300px">
+        <select id=" zhifutype" name="zhifutype" lay-verify="required" lay-search="" style="width: 300px">
+          <option value="">直接选择或搜索选择</option>
+          <option value="微信">微信</option>
+          <option value="支付宝">支付宝</option>        
+        </select>
+      </div>
+    </div>
+    <br>
+    <div class="layui-form-item">
+    <label class="layui-form-label">服务人员：</label>
+    <div class="layui-input-inline" style="width: 300px">
+      <input id="waiter" type="text" name="waiter" lay-verify="required" placeholder="请输入服务人员姓名" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  
+  <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">备注：</label>
+    <div class="layui-input-block" style="width: 300px">
+      <textarea id="beizhu" name="beizhu" placeholder="请输入内容" class="layui-textarea"></textarea>
+    </div>
+  </div>
+ </form> 
+  <div  style="margin-top: 30px;">
+  <div style="margin-left: 180px">
+    <button id="btn-edit" type="button" class="layui-btn">保存</button>
+  </div>
+</div>
+	
+	
+
+
+
+<script type="text/javascript">
+	layui.use(['form','laydate','layer'], function(){
+		  var form = layui.form
+		  ,layer = layui.layer
+		  ,layedit = layui.layedit
+		  ,laydate = layui.laydate;
+		  
+		  //日期
+		  laydate.render({
+			elem : '#starttime'
+			
+		  });
+		
+		});
+	 
+	</script>
+	
+	
+	<script type="text/javascript" src="../web/jquery-3.4.1.min.js"></script>
+
+<script type="text/javascript">
+
+function GetRequest() {
+    var url = decodeURI(location.search); //获取url中"?"符后的字串
+    var theRequest = new Object();
+    if (url.indexOf("?") != -1) {//判断url是否有参数
+        var str = url.substr(1);
+        strs = str.split("&");//多个参数时进行拆分
+        for ( var i = 0; i < strs.length; i++) {//按照等号进行再次拆分
+            theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+        }
+    }
+    return theRequest;
+}
+var Request=undefined;
+Request=GetRequest();
+var id=Request["id"];
+
+
+$(document).ready(function() {
+showChakan();
+});
+
+$.ajax({
+url:"chakan",
+data:"id="+id,
+type:"get",
+dataType:"json",
+success:function(json) {
+	//alert(id);
+	$("#id").val(json.data.id);
+	$("#company").val(json.data.company);
+	$("#starttime").val(json.data.starttime);
+	$("#types").val(json.data.types);
+	$("#money").val(json.data.money);
+	$("#zhifutype").val(json.data.zhifutype);
+	$("#waiter").val(json.data.waiter);
+	$("#beizhu").val(json.data.beizhu);
+	
+	
+}
+});
+
+
+$("#btn-edit").click(function() {
+	
+	
+	$.ajax({
+		url:"update",
+		data:$("#form-edit").serialize(),
+		type:"post",
+		dataType:"json",
+		success:function(json) {
+			
+			if (json.state == 2000) {
+				alert("修改成功！");
+				location.href = "index.html";
+				
+			} else {
+				alert(json.message);
+			}
+		}
+	});
+});
+</script>
+	
+	
+</body>
+</html>

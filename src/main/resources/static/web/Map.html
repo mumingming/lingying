@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+    <link rel="stylesheet" href="../web/css/map.css">
+    <title>地图显示</title>
+</head>
+<body>
+<div id="app">
+    <div class="hear_box">
+        <ul>
+            <div class="left_box">
+                <li><a href="">首页</a></li>
+                <li><a href="">首页</a></li>
+                <li><a href="">首页</a></li>
+                <li><a href="">首页</a></li>
+                <li><a href="">首页</a></li>
+            </div>
+            <div class="rig_box">
+                <li><a href="">登录</a>&nbsp;<span style="color: white">/</span>&nbsp;<a href="">注册</a></li>
+            </div>
+
+        </ul>
+
+
+    </div>
+    <div class="fun">
+        <input type="text" placeholder="请输入要搜索的信息" id="seek">
+        <img src="./img/seek.png" style="height: 30px;width: 30px;float: left;margin-top: 20px;margin-left: -32px">
+        <div class="four_box">
+            <ul>
+                <li class="li_box1" style="height: 45px;width: 60px;margin-top: -13px;float: left;margin-left: -40px;border: 1px solid silver;">
+                    <a  id="link">
+                    <span data-default="售价" data-unit="万" style="float:left;color: black;height: 45px;line-height: 45px;padding-left: 10px;font-size: 14px">售价</span>
+                       <span class="el-icon-arrow-down" style="float: left;color: black;height: 45px;line-height: 45px;"></span>
+                    </a>
+                    <div id="noe" style="display: none;">
+                        <div id="noe_a">
+                            <input type="checkbox" name="checkbox2" class="checkbox1">电影
+                            <input type="checkbox" name="checkbox2" class="checkbox1">电影
+                            <input type="checkbox" name="checkbox2" class="checkbox1">电影
+                            <input type="checkbox" name="checkbox2" class="checkbox1">电影
+                        </div>
+                        <div id="noe_b">
+                            <input type="checkbox" name="checkbox2" class="checkbox1">电影
+                            <input type="checkbox" name="checkbox2" class="checkbox1">电影
+                            <input type="checkbox" name="checkbox2" class="checkbox1">电影
+                            <input type="checkbox" name="checkbox2" class="checkbox1">电影
+                        </div>
+                        <input type="text" class="it"><hr style="width: 20px;border: 1px solid black;float: left;margin-top:16px;margin-left: 11px;"/><input type="text" class="ic">
+                        <div >
+                            <input type="submit" class="sub" name="b1" value="取消" onClick="">
+                            <input type="submit" class="sub" name="b2" value="提交" onClick="">
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+        <div class="rb">
+            <div class="ax1">
+                <a href="#" >准备工作</a>
+            </div>
+            <div class="ax2">
+              <a href="#">准备工作</a>
+            </div>
+        </div>
+    </div>
+    <div class="input-item">
+        <input id="s" type="button" class="btn" onclick="addMarker(10)" value="添加点标记"/>
+    </div>
+    <div class="input-item">
+        <input id="r" type="button" class="btn" onclick="clearMarker()" value="删除点标记">
+    </div>
+<div id="container" >
+
+</div>
+    <div  class="button-group">
+        <input type="button" class="button" value="添加点标记覆盖物" id="addMarker"/>
+        <input type="button" class="button" value="更新点标记覆盖物" id="updateMarker"/>
+        <input type="button" class="button" value="删除点标记覆盖物" id="clearMarker"/>
+    </div>
+</div>
+<!-- 加载地图JSAPI脚本 -->
+<script src="//a.amap.com/jsapi_demos/static/china.js"></script>
+<script type="text/javascript" src="./js/jquery-1.4.2.js"></script>
+<script>
+    $(function(){
+        $('#link').click(function(){//点击a标签
+            if($('#noe').is(':hidden')){//如果当前隐藏
+                $('#noe').show();//那么就显示div
+            }else{//否则
+                $('#noe').hide();//就隐藏div
+            }
+        })
+    })
+</script>
+<script src="https://webapi.amap.com/maps?v=1.4.15&key=8a85e86d45ffa82a9df7dd325a61e3fb&plugin=AMap.MarkerClusterer"></script>
+<script>
+    var map = null;
+    var cluster, markers = [];
+
+    map = new AMap.Map('container', {
+        resizeEnable: true, //是否监控地图容器尺寸变化
+        zoom:11, //初始化地图层级
+        center: [113.665412, 34.757975] //初始化地图中心点
+    });
+
+    function addMarker(code){
+        if(code==0){
+            addMarkBath(100)
+        }else {
+            addMarkBath(code)
+        }
+    }
+    function addMarkBath(code){
+        var thisCount=0;
+        while (true){
+            if(code==thisCount){
+                return;
+            }
+            addMarkOne();
+            thisCount++;
+        }
+    }
+    function addMarkOne() {
+        var x="113."+Math.floor(Math.random()*10)+Math.floor(Math.random()*10);
+        var y="34."+Math.floor(Math.random()*10)+Math.floor(Math.random()*10);
+        map.add(new AMap.Marker({position:[x,y]}));
+    }
+
+
+
+
+</script>
+<script type="text/javascript" src="https://webapi.amap.com/demos/js/liteToolbar.js"></script>
+
+</body>
+</html>

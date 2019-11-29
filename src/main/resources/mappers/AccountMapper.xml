@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="cn.tedu.lingying.mapper.AccountMapper">
+
+
+
+
+
+
+<!-- 	查询所有数据 -->
+<!-- List<Account> getAll(); -->
+<select id="getAll" 
+		resultType="cn.tedu.lingying.entity.Account">
+		SELECT 
+			id,company,
+			starttime,types,
+			money,zhifutype,
+			waiter,beizhu,
+			fujian
+		FROM 
+			account 
+			
+		
+	</select>
+	
+	
+	<!-- 得到公司名字 -->
+	<select id="getCompany" 
+		resultType="cn.tedu.lingying.entity.Account">
+		SELECT 
+			company
+			
+		FROM 
+			account 
+			
+		
+	</select>
+	
+	
+	
+	<!-- 	查询数据 -->
+<!-- List<Account> find(String types) -->
+<select id="find" parameterType="java.lang.String"
+		resultType="cn.tedu.lingying.entity.Account">
+		SELECT 
+			id,company,
+			starttime,types,
+			money,zhifutype,
+			waiter,beizhu,
+			fujian
+		FROM 
+			account
+		<where>
+            <if test="_parameter!=null and _parameter!=''">
+                types=#{_parameter}
+            </if> 
+            
+        </where>
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	<!-- 	模糊数据 -->
+<!-- List<Account> findall(
+			@Param("username") String username,
+			@Param("starttime") String starttime,
+			@Param("endtime") String endtime,
+			@Param("types") String types
+			); -->
+<select id="findall" 
+		resultType="cn.tedu.lingying.entity.Account">
+		SELECT 
+			id,company,
+			starttime,types,
+			money,zhifutype,
+			waiter,beizhu,
+			fujian
+		FROM 
+			account
+		<where>
+            <if test="company !=null and company !=''">
+                 company LIKE "%"#{company}"%"
+            </if> 
+            <if test="starttime !=null and starttime !='' and endtime !=null and endtime !=''">
+                and starttime BETWEEN #{starttime} and #{endtime}
+            </if> 
+            <!-- 如果结束时间为空 则查找大于开始时间的数据 -->
+            <if test="starttime !=null and starttime !=''">
+                and starttime&gt;#{starttime}
+            </if> 
+            <!-- 如果开始时间为空 则查找小于结束时间的数据 -->
+            <if test="endtime !=null and endtime !=''">
+                and starttime&lt;#{endtime}
+            </if> 
+            <if test="types !=null and types !=''">
+                and types=#{types}
+            </if> 
+            
+        </where>
+	</select>
+	
+	
+	 <!-- 如果结束时间为空 则查找大于开始时间的数据 
+            <if test="(starttime !=null and starttime !='')and(endtime ==null and endtime =='')">
+                and starttime&gt;#{starttime}
+            </if> 
+             如果开始时间为空 则查找小于结束时间的数据 
+            <if test="(starttime ==null and starttime =='')and(endtime !=null and endtime !='')">
+                and starttime&lt;#{endtime}
+            </if>  -->
+	
+	
+	
+	<!-- 	模糊加分页-->
+
+<select id="bylimit" 
+		resultType="cn.tedu.lingying.entity.Account">
+		SELECT 
+			id,company,
+			starttime,types,
+			money,zhifutype,
+			waiter,beizhu,
+			fujian
+		FROM 
+			account
+			<where>
+            <if test="company !=null and company !=''">
+                 company LIKE "%"#{company}"%"
+            </if> 
+            <if test="starttime !=null and starttime !='' and endtime !=null and endtime !=''">
+                and starttime BETWEEN #{starttime} and #{endtime}
+            </if> 
+            <!-- 如果结束时间为空 则查找大于开始时间的数据 -->
+            <if test="starttime !=null and starttime !=''">
+                and starttime&gt;#{starttime}
+            </if> 
+            <!-- 如果开始时间为空 则查找小于结束时间的数据 -->
+            <if test="endtime !=null and endtime !=''">
+                and starttime&lt;#{endtime}
+            </if> 
+            <if test="types !=null and types !=''">
+                and types=#{types}
+            </if> 
+            
+        </where>
+        LIMIT #{page}, #{limit}
+	</select>
+	
+	
+	
+	
+	<!-- 用户数据添加（保存） -->
+    <!-- Integer addlist(Account account); -->
+   <insert id="addlist"
+		useGeneratedKeys="true"
+		keyProperty="id">
+        INSERT INTO account (
+           company, starttime,
+            types,money,
+            zhifutype,waiter,
+            beizhu 
+        ) VALUES (
+            #{company}, #{starttime},
+            #{types},#{money},
+            #{zhifutype},#{waiter},
+            #{beizhu}
+        )
+    </insert>
+	<select id="findbycompany" 
+		resultType="cn.tedu.lingying.entity.Account">
+		SELECT 
+			id,company,
+			starttime,types,
+			money,zhifutype,
+			waiter,beizhu,
+			fujian
+		FROM 
+			account
+			where
+			company=#{company} 
+			
+		
+	</select>
+	
+	
+	
+	<!--  附件根据ID更改用户信息 -->
+	<!--Integer updatelist(
+			@Param("id") Integer id
+			,@Param("company") String company
+			,@Param("starttime") String starttime
+			,@Param("types") String types
+			,@Param("money") Integer money
+			,@Param("zhifutype") String zhifutype
+			,@Param("waiter") String waiter
+			,@Param("beizhu") String beizhu
+			
+			);
+	  -->
+	<update id="updatelist">
+		update account set
+			company=#{company},
+			starttime=#{starttime},
+			types=#{types},
+			money=#{money},
+			zhifutype=#{zhifutype},
+			waiter=#{waiter},
+			beizhu=#{beizhu}
+			
+			where
+				id=#{id}
+		
+	</update>
+	
+	
+	
+	<!-- 附件通过ID 查看数据详情 -->
+	<!-- Account findbyid(Integer id) -->
+	<select id="findbyid" 
+		resultType="cn.tedu.lingying.entity.Account">
+		
+		<!-- SELECT 
+			ac.id,ac.company,
+			ac.starttime,ac.types,
+			ac.money,ac.zhifutype,
+			ac.waiter,ac.beizhu,
+			ac.fujian,av.avatar
+		FROM 
+			account ac join avatar  av
+		ON  ac.company=av.cpname
+		WHERE
+			ac.id=#{id} -->
+		
+		
+		 SELECT 
+			id,company,
+			starttime,types,
+			money,zhifutype,
+			waiter,beizhu,
+			fujian
+		FROM 
+			account
+		WHERE
+			id=#{id}  
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- 查找所有数据 -->
+	<select id="selectCount" 
+		resultType="java.lang.Integer">
+		SELECT
+			count(id)
+		FROM
+			account
+	</select>
+	
+	
+	
+	<!-- 修改用户头像 -->
+	<update id="updateAvatar">
+    UPDATE 
+        account 
+    SET 
+        avatar=#{avatar}
+    WHERE 
+        id=#{id}
+</update>
+	
+	
+	
+</mapper>	
+	

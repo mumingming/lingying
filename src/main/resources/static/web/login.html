@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>登录界面</title>
+<link rel="stylesheet" href="../layui/css/layui.css"  media="all">
+  <script src="../layui/layui.js" charset="utf-8"></script>
+
+</head>
+<body>
+	<form id="from_login" action="index.html" method="post">
+		<center>
+			<br>
+			<br>
+			<h1>登录</h1>
+			<br>
+			<br>
+			<br>
+			<!-- 用户名：<input type="text" name="username" id="username"
+				placeholder="请输入用户名"><br> -->
+				
+				<div   class="layui-form-item"  style="width: 400px;">
+   				 <label class="layui-form-label">用户名:</label>
+    		<div class="layui-input-inline">
+      			<input type="text" name="username" id="username" lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+    		</div>
+  			</div>
+				
+			<!--  密&nbsp;&nbsp;&nbsp;码：<input
+				type="text" name="password" id="password" placeholder="请输入密码"><br> -->
+				
+				<div   class="layui-form-item" style="width: 400px;" >
+   				 <label class="layui-form-label">密码:</label>
+    		<div class="layui-input-inline">
+      			<input type="text" name="password" id="password" lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+    		</div>
+  			</div>
+
+			<a href="register.html"> <input type="button" class="layui-btn" value="注册"></a>
+
+			<input type="button" id="btn_login" class="layui-btn" value="登录">
+
+			<!-- <p>
+				<a href="denglu.html"> <input type="button" value="管理员登录"></a>
+			</p> -->
+
+		</center>
+	</form>
+	<script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+
+	<script type="text/javascript">
+$("#btn_login").click(function() {
+	
+	var username=$("#username").val();
+	var password=$("#password").val();
+	
+	$.ajax({
+		url:"login",
+		data:{"username":username,"password":password},
+		type:"post",
+		dataType:"json",
+		success:function(json) {
+			
+			if (json.state == 2000) {
+				alert("登录成功！");
+				 location.href = "index.html";
+			} else {
+				alert(json.message);
+			}
+		}
+	});
+});
+</script>
+</body>
+</html>
+

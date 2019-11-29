@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>客户添加</title>
+<link rel="stylesheet" href="../layui/css/layui.css" media="all">
+<script src="../layui/layui.js" charset="utf-8"></script>
+<!-- <script src="../layer/layer.js"></script> -->
+
+
+</head>
+<body>
+
+<br>
+<br>
+<h1 style="margin-left: 180px">新增客户</h1>
+<br>
+<br>
+<br>
+<form  id="form-add2" action="">
+ <div class="layui-form-item">
+    <label class="layui-form-label">公司名称：</label>
+    <div class="layui-input-inline" style="width: 300px">
+      <input type="text" name="company" lay-verify="required" placeholder="请输入公司名称" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+   <div class="layui-form-item">
+    <label class="layui-form-label">联系方式：</label>
+    <div class="layui-input-inline" style="width: 300px">
+      <input type="text" name="phone" lay-verify="required" placeholder="请输入联系方式" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-inline">
+      <label class="layui-form-label">类型：</label>
+      <div class="layui-input-inline">
+        <select name="types" lay-verify="required" lay-search="" style="width: 300px">
+          <option value="">直接选择或搜索选择</option>
+          <option value="收入">收入</option>
+          <option value="支出">支出</option>        
+        </select>
+      </div>
+    </div>
+  
+   <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">备注：</label>
+    <div class="layui-input-block" style="width: 300px">
+      <textarea name="beizhu" placeholder="请输入内容" class="layui-textarea"></textarea>
+    </div>
+  </div>
+  
+  
+  
+  <div  style="margin-top: 30px;">
+  <div style="margin-left: 180px">
+    <button id="btn-add2" type="button" class="layui-btn">提交</button>
+  </div>
+</div>
+</form>
+
+
+
+
+<script type="text/javascript" src="../web/jquery-3.4.1.min.js"></script>
+
+<script type="text/javascript">
+$("#btn-add2").click(function() {
+	
+	
+	$.ajax({
+		url:"add",
+		data:$("#form-add2").serialize(),
+		type:"post",
+		dataType:"json",
+		success:function(json) {
+			
+			if (json.state == 2000) {
+				alert("添加成功！");
+				location.href = "index.html";
+				
+			} else {
+				alert(json.message);
+			}
+		}
+	});
+});
+</script>
+
+
+
+
+
+
+
+</body>
+</html>

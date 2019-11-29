@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="cn.tedu.lingying.mapper.AvatarMapper">
+	
+	
+   <insert id="insert">
+        INSERT INTO avatar (
+            address,cpname 
+        ) VALUES (
+           #{address},#{cpname}
+        )
+    </insert>
+    
+    
+    <select id="find" 
+		resultType="cn.tedu.lingying.entity.Avatar">
+		SELECT 
+			address
+		FROM 
+			avatar
+		WHERE
+			cpname=#{cpname};
+			
+		
+	</select>
+	
+	
+
+
+<!-- Integer delbyaddress(String address); -->
+	<delete id="delbyaddress">
+		DELETE FROM 
+		avatar 
+	WHERE 
+		address=#{address}
+	</delete>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+

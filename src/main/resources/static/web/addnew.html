@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>款项收支</title>
+<link rel="stylesheet" href="../layui/css/layui.css" media="all">
+<script type="text/javascript" src="../layui/layui.js" charset="utf-8"></script>
+<!-- <script src="../layer/layer.js"></script> -->
+<script src="../files/Print.js"></script>
+
+<style type="text/css">
+#one {
+	width: 1350;
+	height: 550px;
+	  /* border: 1px solid red;  */ 
+	display: flex;
+}
+
+.two {
+	width: 700px;
+	height: 550px;
+	  /* border: 1px solid green;  */ 
+}
+.three {
+	width: 650px;
+	height: 550px;
+	/*  border: 1px solid yellow;   */
+	/* margin: 0 auto; */
+	 
+}
+.four{
+    margin-right: -100px;
+    margin-top: -38px;
+}
+.five{
+	/* height: 43px; */
+}
+
+div>div>img{
+	/* 轮播图图片尺寸 */
+	width: 580px;
+	height: 300px;
+}
+
+#demo2{
+	margin-left:60px;
+	width: 600px;
+	height: 90px;
+	/* border: 1px red solid; */
+}
+#demo2 >img{
+	/* margin-top:-28px;*/
+	margin-left:10px; 
+	width:60px;
+	height: 60px;
+}
+
+</style>
+
+</head>
+<body id="dayin">
+
+	<br>
+	<center>
+		<div>
+			<h1>款项收支</h1>
+		</div>
+	</center>
+		<br> 
+
+
+		<div id="one">
+			<div class="two">
+			
+			
+<center>
+<div class="layui-carousel" id="test1" lay-filter="test1">
+  <div carousel-item="" id="lunbo">
+   
+    <!-- <div><img src="/image/9.jpg"></div>
+    <div><img src="/image/8.jpg"></div>
+    
+    <div><img src="/image/7.jpg"></div>
+    <div><img src="/image/6.jpg"></div>
+    <div><img src="/image/5.jpg"></div> -->
+  </div>
+</div> 
+	<!-- 条目中可以是任意内容，如：<img src=""> -->
+ 
+
+<script>
+layui.use('carousel', function(){
+  var carousel = layui.carousel;
+  //建造实例
+ var ins=carousel.render({
+    elem: '#test1'
+    ,width: '580px' //设置容器宽度
+    ,height:'300px'
+    ,arrow: 'always' //始终显示箭头
+    //,anim: 'updown' //切换动画方式
+    
+  });
+});
+
+
+
+var carousel = layui.carousel;
+
+//监听轮播切换事件
+carousel.on('change(test1)', function(obj){ //test1来源于对应HTML容器的 lay-filter="test1" 属性值
+console.log(obj.index); //当前条目的索引
+console.log(obj.prevIndex); //上一个条目的索引
+console.log(obj.item); //当前条目的元素对象
+});
+
+
+
+layui.use(['carousel', 'form'], function(){
+	  var carousel = layui.carousel
+	  ,form = layui.form;
+	  
+	  //事件
+	  carousel.on('change(test4)', function(res){
+	    console.log(res)
+	  });
+	  
+	  var $ = layui.$, active = {
+	    set: function(othis){
+	      var THIS = 'layui-bg-normal'
+	      ,key = othis.data('key')
+	      ,options = {};
+	      
+	      othis.css('background-color', '#5FB878').siblings().removeAttr('style'); 
+	      options[key] = othis.data('value');
+	      ins3.reload(options);
+	    }
+	  };
+	  
+	  //监听开关
+	  form.on('switch(autoplay)', function(){
+	    ins3.reload({
+	      autoplay: this.checked
+	    });
+	  });
+	  
+	  $('.demoSet').on('keyup', function(){
+	    var value = this.value
+	    ,options = {};
+	    if(!/^\d+$/.test(value)) return;
+	    
+	    options[this.name] = value;
+	    ins3.reload(options);
+	  });
+	  
+	  //其它示例
+	  $('.demoTest .layui-btn').on('click', function(){
+	    var othis = $(this), type = othis.data('type');
+	    active[type] ? active[type].call(this, othis) : '';
+	  });
+	}); 
+</script>
+</center>
+
+<div class="layui-upload">
+  <!-- <button type="button" class="layui-btn" id="test2">多图片上传</button>   -->
+  <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+    预览图：
+    <div style="overflow-y:scroll;"  class="layui-upload-list" id="demo2"></div>
+    
+ </blockquote>
+</div>
+<button type="button" class="layui-btn" id="test2">选择图片</button>
+<button type="button" class="layui-btn" id="test3">上传</button>
+
+<!-- //<button type="button" class="layui-btn" ><i class="layui-icon"></i>上传图片</button> -->			
+
+<div class="layui-upload">
+  
+  <div class="layui-upload-list">
+    <table class="layui-table">
+      <thead>
+        <tr><th>文件名</th>
+        <th>大小</th>
+        <th>状态</th>
+        <th>操作</th>
+      </tr></thead>
+      <tbody id="demoList"></tbody>
+    </table>
+  </div>
+  <button type="button" class="layui-btn layui-btn-normal" id="testList">选择多文件</button> 
+  <button type="button" class="layui-btn" id="testListAction">开始上传</button>
+</div> 
+
+
+
+				
+</div>
+			
+	
+	
+	<form id="form-add" action="">	
+	<div class="three" style="float: left;">
+			<div   class="layui-form-item" >
+   				 <label class="layui-form-label">公司名称:</label>
+    		<div class="layui-input-inline">
+      			<input type="text" id="company" name="company" lay-verify="required" placeholder="请输入公司名称" autocomplete="off" class="layui-input">
+      			 	<div class="four">
+      			 	<!-- <a href="addnew2.html" style="float: right;" ><button type="button" class="layui-btn">添加客户</button></a>  -->
+      			 	<button style="float: right;"  type="button" class="layui-btn " id="btn-t">添加客户</button>
+      			 	<!-- <button style="float: right;" data-method="offset" data-type="auto" class="layui-btn layui-btn-normal" id="btn-t">添加客户</button> -->
+      			 	</div>
+    		</div>
+  			</div>
+  			
+  			
+  			
+  			 <div class="layui-inline">
+      <label class="layui-form-label">时间:</label>
+      <div class="layui-input-inline">
+        <input type="text" name="starttime" id="starttime" lay-verify="date" placeholder="yyyy-MM-dd(必选项)" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    
+    <div class="layui-form-item">
+    <label class="layui-form-label">类型</label>
+    <div class="layui-input-block" 
+    style="  margin-left: 110px;
+   			 min-height: 28px;
+   			 padding-top: 10px;">
+      <input type="radio" name="types" id="收入" value="收入" title="收入" checked="">收入
+      <input type="radio" name="types" id="支出" value="支出" title="支出">支出
+    </div>
+  </div>
+  
+  
+  <div   class="layui-form-item" >
+   				 <label class="layui-form-label">收款金额:</label>
+    		<div class="layui-input-inline five"><!-- 两个class名字 -->
+      			<input type="text" id="money" name="money" lay-verify="required" placeholder="请输入金额(元)" autocomplete="off" class="layui-input">
+    		</div>
+  			</div>
+  			
+  			<div class="layui-form" class="layui-inline">
+      <label class="layui-form-label">收款方式</label>
+      <div class="layui-input-inline">
+        <select name="zhifutype" lay-verify="required" id="zhifutype" lay-search="" >
+          <option value="">直接选择或搜索选择</option>
+          <option   value="微信">微信</option>
+          <option  value="支付宝">支付宝</option>
+        </select>
+      </div>
+    </div>
+    <br>
+    <div   class="layui-form-item" >
+   				 <label class="layui-form-label">服务人员:</label>
+    		<div class="layui-input-inline">
+      			<input type="text" id="waiter" name="waiter" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+    		</div>
+  			</div>
+  			
+  			<div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">备注</label>
+    <div class="layui-input-block">
+      <textarea id="beizhu" name="beizhu" placeholder="请输入内容" class="layui-textarea"></textarea>
+    </div>
+  </div>
+  </form>
+  
+  <center>
+  <button type="button" id="btn-add" class="layui-btn">保存</button>
+  <button type="button" id="btn-dayin" class="layui-btn">打印</button>
+  </center>
+  			
+	</div>
+
+
+
+		
+<script>
+layui.use(['carousel','jquery'], function(){
+	  var carousel = layui.carousel
+	  ,$ = layui.$;
+	  //建造实例
+	 var ins=   carousel.render({
+	    elem: '#test1'
+	    ,width: '580px' //设置容器宽度
+	    ,height:'300px'
+	    ,arrow: 'always' //始终显示箭头
+	    //,anim: 'updown' //切换动画方式
+	    
+	  });
+	});
+layui.use(['upload','jquery','carousel'], function(){
+  var $ = layui.jquery
+  ,upload = layui.upload,
+   carousel = layui.carousel;
+ var ins= carousel.render({
+	    elem: '#test1'
+	    ,width: '580px' //设置容器宽度
+	    ,height:'300px'
+	    ,arrow: 'always' //始终显示箭头
+	    //,anim: 'updown' //切换动画方式
+	    
+	  });
+ 
+ $("#btn-add").click(function() {
+		
+		
+		$.ajax({
+			url:"add",
+			data:$("#form-add").serialize(),
+			type:"post",
+			dataType:"json",
+			success:function(json) {
+				
+				if (json.state == 2000) {
+					alert("保存成功！");
+					cpname = $('#company').val();
+					alert(cpname);
+					
+					
+					//多图片上传
+					upload.render({
+					  elem: '#test2'
+					  ,url: '/upload?cpname='+cpname
+					  ,type:"post"
+					  ,multiple:true  //允许多图片上传
+					  //,number:7  //可以同时上传图片的数量
+					  ,response: {
+							    statusName: 'state' //规定数据状态的字段名称，默认：code
+							    ,statusCode: 2000 //规定成功的状态码，默认：0
+							  } 
+					  ,auto: false //选择文件后不自动上传
+					  ,bindAction: '#test3' //指向一个按钮触发上传
+					  ,choose: function(obj){  //选择文件后函数回调
+					    //预读本地文件，如果是多文件，则会遍历。(不支持ie8/9)
+					    obj.preview(function(index, file, result){
+						  console.log(index);
+					        $('#demo2').append('<img id="tupian'+index+'" src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">');
+					        $("#tupian"+index).click(function(){
+						    	  var boo = confirm("你确定要删除吗？");
+						    	  if(boo){
+						    		  $("#tupian"+index).remove();
+						    	  }else{
+						    		  
+						    	  }
+						      })
+					    });
+					   
+					  }
+					  ,done: function(res, index, upload){
+						  //上传成功后函数回调
+						  var result = res.data;
+						  $('#lunbo').append('<div><img src="'+ result +'"></div>');
+						  ins.reload( {
+				  			  elem: '#test1'
+				  		    ,width: '580px' //设置容器宽度
+				  			    ,height:'300px'
+				  			    ,arrow: 'always' //始终显示箭头
+				  			    //,anim: 'updown' //切换动画方式);
+				    	});
+						  }
+					  /* ,before: function(obj){ //obj参数包含的信息，跟 choose回调完全一致，可参见上文。
+						  obj.preview(function(index,file, result) {
+								$('#lunbo').append('<div><img src="'+ result +'" alt="'+ file.name +'" ></div>')
+					    	
+							});
+					    	ins.reload( {
+					  			  elem: '#test1'
+					  		    ,width: '580px' //设置容器宽度
+					  			    ,height:'300px'
+					  			    ,arrow: 'always' //始终显示箭头
+					  			    //,anim: 'updown' //切换动画方式);
+					    	});
+					  
+					  } */
+					    
+					 
+					      //上传完毕
+					    });
+					     
+					  
+					 
+					 
+					  
+
+
+					  
+					  //多文件列表示例
+					  var demoListView = $('#demoList')
+					  ,uploadListIns = upload.render({
+					    elem: '#testList'
+					    ,url: '/upload/'
+					    ,accept: 'file'
+					    ,multiple: true
+					    ,auto: false
+					    ,bindAction: '#testListAction'
+					    ,choose: function(obj){   
+					      var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+					      //读取本地文件
+					      obj.preview(function(index, file, result){
+					        var tr = $(['<tr id="upload-'+ index +'">'
+					          ,'<td>'+ file.name +'</td>'
+					          ,'<td>'+ (file.size/1014).toFixed(1) +'kb</td>'
+					          ,'<td>等待上传</td>'
+					          ,'<td>'
+					            ,'<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
+					            ,'<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
+					          ,'</td>'
+					        ,'</tr>'].join(''));
+					        
+					        //单个重传
+					        tr.find('.demo-reload').on('click', function(){
+					          obj.upload(index, file);
+					        });
+					        
+					        //删除
+					        tr.find('.demo-delete').on('click', function(){
+					          delete files[index]; //删除对应的文件
+					          tr.remove();
+					          uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+					        });
+					        
+					        demoListView.append(tr);
+					      });
+					    }
+					    ,done: function(res, index, upload){
+					      if(res.code == 0){ //上传成功
+					        var tr = demoListView.find('tr#upload-'+ index)
+					        ,tds = tr.children();
+					        tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>');
+					        tds.eq(3).html(''); //清空操作
+					        return delete this.files[index]; //删除文件队列已经上传成功的文件
+					      }
+					      this.error(index, upload);
+					    }
+					    ,error: function(index, upload){
+					      var tr = demoListView.find('tr#upload-'+ index)
+					      ,tds = tr.children();
+					      tds.eq(2).html('<span style="color: #FF5722;">上传失败</span>');
+					      tds.eq(3).find('.demo-reload').removeClass('layui-hide'); //显示重传
+					    }
+					  });
+					
+					
+				} else {
+					alert(json.message);
+				}
+			}
+		});
+	});
+ 
+ 
+ 
+  
+  
+/*   
+//选完文件后不自动上传
+  upload.render({
+    elem: '#test8'
+    ,url: '/upload/'
+    ,auto: false
+    //,multiple: true
+    ,bindAction: '#test9'
+    ,done: function(res){
+      console.log(res)
+    }
+  });
+  //绑定原始文件域
+  upload.render({
+    elem: '#test20'
+    ,url: '/upload/'
+    ,done: function(res){
+      console.log(res)
+    }
+  }); */
+  
+});
+</script>
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="../web/jquery-3.4.1.min.js"></script>
+
+<script type="text/javascript">
+
+
+
+</script>
+
+<script type="text/javascript">
+	layui.use(['form','laydate','layer'], function(){
+		  var form = layui.form
+		  ,layer = layui.layer
+		  ,layedit = layui.layedit
+		  ,laydate = layui.laydate;
+		  
+		  //日期
+		  laydate.render({
+			elem : '#starttime'
+			
+		  });
+		
+		});
+	 
+	</script>
+	
+	
+	<!-- 打印功能 -->
+	<script type="text/javascript">
+	$("#btn-dayin").click(function() {
+		Print('#dayin', {
+	        onStart: function () {
+	         
+	        }
+	      });
+		
+	});
+	
+	
+	</script>
+	
+	
+	<!-- 弹出客户添加页面 -->
+	<script type="text/javascript">
+		layui.use('layer', function() {
+			var $ = layui.jquery, layer = layui.layer;
+
+			$("#btn-t").on("click", function() {
+				layer.open({
+					type : 2,
+					title : '添加客户',
+					offset:'auto',
+					//scrollbar: false,
+					content : 'addnew2.html',
+					area: ['500px', '550px'],
+					end:function(){
+						location.reload();
+					}
+				});
+			});
+		});
+	</script>
+
+	
+
+</body>
+</html>

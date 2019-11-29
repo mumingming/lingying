@@ -1,0 +1,190 @@
+.paws {
+	width: 1200px;
+	height: 700px;
+	margin: 0 auto;
+}
+
+.biaoti {
+	font-size: 30px;
+	text-align: center;
+	font-weight: 800;
+}
+
+.input_test {
+	width: 1200px;
+	height: 50px;
+	margin: 0 auto;
+	/*padding-left: 100px;*/
+	margin-top: 50px;
+	display: flex;
+	text-align: center;
+	line-height: 50px;
+	font-size: 14px;
+}
+
+.input_test input {
+	height: 26px;
+	/*margin: 0 5px 0 5px;*/
+}
+
+.miaoti {
+	float: right;
+	margin: -20px 460px 0 0;
+	font-size: 14px;
+}
+
+.anniu_sousuo {
+	width: 60px;
+	height: 30px;
+	background: chartreuse;
+	border: 15px;
+	margin-left: 20px;
+	margin-top: 10px;
+	float: right;
+}
+
+.xinxi_biao {
+	width: 1200px;
+	height: 200px;
+	margin: 50px 0 0 0;
+	text-indent: calc(7px);
+	font-weight: 600;
+}
+
+.tr_one {
+	background: #f3f3f3;
+}
+
+
+/*.ever{
+	display: flex;
+}*/
+
+.jiantou_zy {
+	width: 100px;
+	height: 30px;
+	display: flex;
+	float: left;
+}
+
+.yema {
+	width: 20px;
+	height: 30px;
+	font-size: 20px;
+	text-align: center;
+	line-height: 30px;
+	padding-right: 5px;
+}
+
+.yema:hover {
+	background: #7FFF00;
+}
+
+.jiantou {
+	width: 30px;
+	border: 5px;
+	background: #FFFFFF;
+	font-size: 15px;
+	text-align: center;
+	line-height: 30px;
+	display: table-cell;
+}
+
+.input_lingying {
+	margin: 10px 5px 0 5px;
+}
+
+.tianzhuan_yema {
+	height: 30px;
+	width: 350px;
+	font-size: 15px;
+	margin-left: 100px;
+	text-align: left;
+	line-height: 50px;
+	display: flex;
+	/*text-align: center;*/
+	/*display: table-cell;*/
+}
+
+.yema_one {
+	width: 30px;
+	height: 30px;
+	margin-left: 10px;
+	border: 0;
+}
+
+.ever {
+	font-size: 15px;
+	line-height: 30px;
+}
+
+.wenben {
+	margin-top: -10px;
+	border: 0;
+	font-size: 14px;
+}
+
+.queren_tiaozhuanyema {
+	width: 50px;
+	height: 30px;
+	margin-left: 10px;
+	border: 0;
+}
+
+.yema_gong {
+	width: 190px;
+	height: 30px;
+	display: flex;
+	/*display: block;*/
+	line-height: 30px;
+	text-align: center;
+}
+
+.shuzi {
+	width: 15px;
+	height: 30px;
+	font-size: 14px;
+}
+
+.xiala_tiazhuan {
+	width: 75px;
+	height: 30px;
+	font-size: 14px;
+	font-family: "微软雅黑";
+}
+
+.tjjl_par {
+	width: 1200px;
+}
+
+.tjjl_tianjia {
+	width: 115px;
+	height: 47px;
+	
+	font-size: 22px;
+	text-align: center;
+	line-height: 47px;
+	float: right;
+	margin-top: 30px;
+	
+}
+
+.xqxg a {
+	color: #53a5e3;
+}
+
+.xqxg_xinyemian {
+	display: flex;
+}
+
+.dyzf_button button {
+	width: 40px;
+	height: 30px;
+}
+
+.Excel {
+	float: right;
+	margin-right: 20px;
+	border: 0;
+}
+

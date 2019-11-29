@@ -1,0 +1,82 @@
+/*网上粘贴日期*/
+
+#date {
+	width: 620px;
+	height: 50px;
+	border: 0px solid #FFF;
+	/*float: left;*/
+	/*margin-left: 118px;
+  margin-top: 46px;*/
+}
+
+#startTime {
+	float: left;
+	margin-left: 0px;
+	background: #FFFFFF;
+}
+
+#endTime {
+	float: left;
+	margin-left: 30px;
+	background: #FFFFFF;
+}
+
+#TimeRight {
+	float: right;
+	background: #FFFFFF;
+	width: 20px;
+	height: 50px;
+}
+
+input[type="month"] {
+	width: 158px;
+	height: 50px;
+	border: none;
+	line-height: 1;
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	/*padding-left: 14px;*/
+	font-size: 1rem;
+	color: #525C66;
+	outline: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	padding-right: -00px;
+	background: url("../../assets/img/出生年月.png") no-repeat scroll right center transparent;
+}
+
+input[type="month"]::-webkit-inner-spin-button {
+	visibility: hidden;
+}
+
+input[type="month"] {
+	outline: none;
+	/*background: url(../assets/img/出生年月.png) no-repeat right;*/
+}
+
+input[type="month"]:after {}
+
+input[type="month"]::-webkit-calendar-picker-indicator {
+	/*这是控制下拉小箭头的*/
+	border: 0px solid #ccc;
+	border-radius: 0px;
+	/*box-shadow: inset 0 1px #fff, 0 1px #eee;*/
+	color: #FFF;
+	width: 0px;
+	height: 0px;
+}
+
+.Time {
+	width: 80px;
+	height: 50px;
+	background: #FFFFFF;
+	float: left;
+}
+
+#TimeFont {
+	font-size: 14px;
+	color: #8F9DB3;
+	float: left;
+	margin-left: 10px;
+	/*margin-top: 15px;*/
+}
