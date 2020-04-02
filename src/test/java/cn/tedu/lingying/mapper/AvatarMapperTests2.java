@@ -18,24 +18,20 @@ import cn.tedu.lingying.entity.Avatar;
 @SpringBootTest
 public class AvatarMapperTests2 {
 
-	
-	@Resource
-	 private AvatarMapper mapper;
-	
-	
 
-	
-	
-	/**
-	 * 
-	 */
-	@Test
-	public void findBycpname() {
-		String cpname = "7";
-		List<Avatar> avatar =  mapper.find(cpname);
-		System.err.println(avatar);
-	}
-	
+    @Resource
+    private AvatarMapper mapper;
 
-	
+
+    /**
+     *
+     */
+    @Test
+    public void findBycpname() {
+        String cpname = "7";
+        List<Avatar> avatar = mapper.find(cpname);
+        System.err.println(avatar);
+    }
+
+
 }

@@ -1,17 +1,23 @@
-html,body{
+html, body {
     margin: 0;
     padding: 0;
 }
-body{
+
+body {
     font-size: 14px;
     color: #333;
 }
+
 @media print {
-    body{-webkit-print-color-adjust:exact;} 
+    body {
+        -webkit-print-color-adjust: exact;
+    }
 }
-.fr{
-    float:right;
+
+.fr {
+    float: right;
 }
-.vt{
+
+.vt {
     vertical-align: top;
 }

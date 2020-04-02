@@ -13,6 +13,7 @@ import java.util.*;
 public class ImageUtils {
     /**
      * 上传图片
+     *
      * @param request
      * @param commonsMultipartFile
      * @return
@@ -22,7 +23,7 @@ public class ImageUtils {
                                 CommonsMultipartFile commonsMultipartFile) throws IOException {
         String imgPath = null;//装配后的图片地址
         //上传图片
-        if(commonsMultipartFile!=null&&!commonsMultipartFile.isEmpty()){
+        if (commonsMultipartFile != null && !commonsMultipartFile.isEmpty()) {
             // 使用UUID给图片重命名，并去掉四个“-”
             String name = UUID.randomUUID().toString().replaceAll("-", "");
             // 获取文件的扩展名
@@ -40,30 +41,31 @@ public class ImageUtils {
         }
         return imgPath;
     }
+
     /**
      * 验证文件夹是否存在
+     *
      * @param strFolder
      * @return
      */
-    public static boolean isFolderExists(String strFolder){
+    public static boolean isFolderExists(String strFolder) {
         File file = new File(strFolder);
 
-        if (!file.exists())
-        {
-            if (file.mkdir())
-            {
+        if (!file.exists()) {
+            if (file.mkdir()) {
                 return true;
-            }
-            else{
+            } else {
                 return false;
             }
 
         }
-        System.out.println("-----------------文件上传路径："+strFolder);
+        System.out.println("-----------------文件上传路径：" + strFolder);
         return true;
     }
+
     /**
      * 获取目录下所有文件(按时间排序)
+     *
      * @param path
      * @return
      */
@@ -84,8 +86,10 @@ public class ImageUtils {
         }
         return list;
     }
+
     /**
-     *  获取目录下所有文件
+     * 获取目录下所有文件
+     *
      * @param realpath
      * @param files
      * @return
@@ -104,7 +108,6 @@ public class ImageUtils {
         }
         return files;
     }
-    
 
 
 }

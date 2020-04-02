@@ -3,7 +3,7 @@ package cn.tedu.lingying.service.ex;
 /**
  * 登录验证未审批提示
  */
-public class LoginException  extends ServiceException {
+public class LoginException extends ServiceException {
 
     public LoginException() {
         super();

@@ -1,89 +1,93 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>用户注册</title>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
 
-<link rel="stylesheet" href="../layui/css/layui.css"  media="all">
-  <script src="../layui/layui.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../layui/css/layui.css" media="all">
+    <script src="../layui/layui.js" charset="utf-8"></script>
 </head>
 <body>
 <center>
-<form id="form-reg" method="post" action="user/reg">
-	<br>
-	<br>
-	<h1>用户注册</h1>
-	<br>
-	<br>
-	
-	<!-- <p>请输入用户名：</p>
-	<p><input id="username" name="username" /><span id="span-username" style="color:red;"></span></p> -->
-	<div   class="layui-form-item"  style="width: 400px;">
-   				 <label class="layui-form-label">用户名:</label>
-    		<div class="layui-input-inline">
-      			<input type="text" name="username" id="username" lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
-    		</div>
-  			</div>
-	
-	
-	<!-- <p>请输入密码：</p>
-	<p><input id="password" type="password" name="password" /></p> -->
-	
-	<div   class="layui-form-item" style="width: 400px;" >
-   				 <label class="layui-form-label">密码:</label>
-    		<div class="layui-input-inline">
-      			<input type="text" name="password" id="password" lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
-    		</div>
-  			</div>
-	<!-- <p>请输入年龄：</p>
-	<p><input name="age" /></p> -->
-	
-	<div   class="layui-form-item" style="width: 400px;" >
-   				 <label class="layui-form-label">年龄:</label>
-    		<div class="layui-input-inline">
-      			<input type="text" name="age" id="age" lay-verify="required" placeholder="请输入年龄" autocomplete="off" class="layui-input">
-    		</div>
-  			</div>
-	
-	<div   class="layui-form-item" style="width: 400px;" >
-   				 <label class="layui-form-label">电话:</label>
-    		<div class="layui-input-inline">
-      			<input type="text" name="phone" id="phone" lay-verify="required" placeholder="请输入电话" autocomplete="off" class="layui-input">
-    		</div>
-  			</div>
-	
-	
-	<input id="btn-reg" type="button" class="layui-btn" value="注册" />
-	<a href="login.html">
-		<input type="button" class="layui-btn" value="登录"></a>
-</form>
+    <form id="form-reg" method="post" action="user/reg">
+        <br>
+        <br>
+        <h1>用户注册</h1>
+        <br>
+        <br>
+
+        <!-- <p>请输入用户名：</p>
+        <p><input id="username" name="username" /><span id="span-username" style="color:red;"></span></p> -->
+        <div class="layui-form-item" style="width: 400px;">
+            <label class="layui-form-label">用户名:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="username" id="username" lay-verify="required" placeholder="请输入用户名"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+
+        <!-- <p>请输入密码：</p>
+        <p><input id="password" type="password" name="password" /></p> -->
+
+        <div class="layui-form-item" style="width: 400px;">
+            <label class="layui-form-label">密码:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="password" id="password" lay-verify="required" placeholder="请输入密码"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <!-- <p>请输入年龄：</p>
+        <p><input name="age" /></p> -->
+
+        <div class="layui-form-item" style="width: 400px;">
+            <label class="layui-form-label">年龄:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="age" id="age" lay-verify="required" placeholder="请输入年龄" autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item" style="width: 400px;">
+            <label class="layui-form-label">电话:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="phone" id="phone" lay-verify="required" placeholder="请输入电话" autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+
+
+        <input id="btn-reg" type="button" class="layui-btn" value="注册"/>
+        <a href="login.html">
+            <input type="button" class="layui-btn" value="登录"></a>
+    </form>
 </center>
 <script type="text/javascript" src="../web/jquery-3.4.1.min.js"></script>
 
 <script type="text/javascript">
-$("#btn-reg").click(function() {
-	
-	var username=$("#username").val();
-	var password=$("#password").val();
-	alert(username);
-	alert(password);
-	$.ajax({
-		url:"reg",
-		data:{"username":username,"password":password},
-		/* "data":$("#form-reg").serialize(), */
-		type:"post",
-		dataType:"json",
-		success:function(json) {
-			
-			if (json.state == 2000) {
-				alert("注册成功！");
-				 location.href = "login.html";
-			} else {
-				$("#span-username").html(json.message);
-			}
-		}
-	});
-});
+    $("#btn-reg").click(function () {
+
+        var username = $("#username").val();
+        var password = $("#password").val();
+        alert(username);
+        alert(password);
+        $.ajax({
+            url: "reg",
+            data: {"username": username, "password": password},
+            /* "data":$("#form-reg").serialize(), */
+            type: "post",
+            dataType: "json",
+            success: function (json) {
+
+                if (json.state == 2000) {
+                    alert("注册成功！");
+                    location.href = "login.html";
+                } else {
+                    alert(json.message);
+                }
+            }
+        });
+    });
 </script>
 </body>
 </html>

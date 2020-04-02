@@ -5,32 +5,31 @@ package cn.tedu.lingying.controller.ex;
  */
 public class FileUploadStateException extends FileUploadException {
 
-	
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 7079890558160440312L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 7079890558160440312L;
 
-	public FileUploadStateException() {
-		super();
-	}
+    public FileUploadStateException() {
+        super();
+    }
 
-	public FileUploadStateException(String message, Throwable cause, boolean enableSuppression,
-			boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
-	}
+    public FileUploadStateException(String message, Throwable cause, boolean enableSuppression,
+                                    boolean writableStackTrace) {
+        super(message, cause, enableSuppression, writableStackTrace);
+    }
 
-	public FileUploadStateException(String message, Throwable cause) {
-		super(message, cause);
-	}
+    public FileUploadStateException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-	public FileUploadStateException(String message) {
-		super(message);
-	}
+    public FileUploadStateException(String message) {
+        super(message);
+    }
 
-	public FileUploadStateException(Throwable cause) {
-		super(cause);
-	}
+    public FileUploadStateException(Throwable cause) {
+        super(cause);
+    }
 
 }

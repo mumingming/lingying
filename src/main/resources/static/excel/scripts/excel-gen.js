@@ -32,11 +32,11 @@ Author Paul Warren */
 //Initial XLSX Generation assumes default Workbook with sheet1, sheet2 and sheet3 inside.  Will upgrade to be more flexible in future releases.
 
 /**
-* Excel Generator.
-*
-* Creates .xlsx from HTML Table.
-*
-*/
+ * Excel Generator.
+ *
+ * Creates .xlsx from HTML Table.
+ *
+ */
 function ExcelGen(options) {
     //internal access to this
     me = this;
@@ -92,7 +92,7 @@ function ExcelGen(options) {
 
     /**
      * Creates sharedStrings.xml file.
-     * 
+     *
      * Excel files have a sharedStrings.xml, this file holds all of the strings
      * used in the Excel spreadsheet to reduce repeating data.
      */
@@ -118,9 +118,9 @@ function ExcelGen(options) {
                 if (this.vals.indexOf(value) === -1) {
                     this.vals.push(value);
                 }
-                return { "type": "shared", "value": this.vals.indexOf(value), "text": value };
+                return {"type": "shared", "value": this.vals.indexOf(value), "text": value};
             } else {
-                return { "type": "literal", "value": value, "text": value };
+                return {"type": "literal", "value": value, "text": value};
             }
         },
         /**
@@ -263,22 +263,26 @@ function ExcelGen(options) {
         return out;
     };
 
-	String.prototype.format = function () {
-		return (function (a, t) { return t.replace(/\{(\d+)\}/g, function (_, i) { return a[~ ~i] }) })(arguments, this);
-	};
+    String.prototype.format = function () {
+        return (function (a, t) {
+            return t.replace(/\{(\d+)\}/g, function (_, i) {
+                return a[~~i]
+            })
+        })(arguments, this);
+    };
 
-	/**
-	 *    Extension of JQuery Library for getting either the text or the value out of child elements.
-	 *
-	 *    Looks at the children elements, if it finds select or input tag, 
-	 *    it returns the value, otherwise it returns the text of the element.
-	 */
-	jQuery.fn.extend({
-	  "textOrValue": function () {
-		var t = this.find("select, input");
-		return (t.length) ? t.val():this.text();
-	  }
-	});
+    /**
+     *    Extension of JQuery Library for getting either the text or the value out of child elements.
+     *
+     *    Looks at the children elements, if it finds select or input tag,
+     *    it returns the value, otherwise it returns the text of the element.
+     */
+    jQuery.fn.extend({
+        "textOrValue": function () {
+            var t = this.find("select, input");
+            return (t.length) ? t.val() : this.text();
+        }
+    });
 
     /**
      * Basic internal initialization.
@@ -373,7 +377,7 @@ function ExcelGen(options) {
         workbook.worksheets.file("sheet1.xml", this.sheet.to_xml());
         workbook.xl.file("sharedStrings.xml", this.sharedStrings.to_xml());
         workbook.tables.file("table1.xml", this.table.to_xml());
-        workbook.base.generateAsync({ type: "blob" })
+        workbook.base.generateAsync({type: "blob"})
             .then(function (content) {
                 saveAs(content, "example.xlsx");
             });
